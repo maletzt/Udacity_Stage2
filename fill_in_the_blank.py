@@ -16,40 +16,37 @@
 # To help you get started, we've provided a sample paragraph that you can use when testing your code.
 # Your game should consist of 3 or more levels, so you should add your own paragraphs as well!
 
+#Questions associated with the Easy Difficulty Quiz
+easyQuiz = '''This is a quiz developed by ___1___ programming language. Python is a widely used ___2___ -level, general-purpose, interpreted, " \
+    "dynamic programming language. Python was conceived in the late 1980s, and its implementation began in December ___3___. It was done by Guido ___4___ Rossum.'''
+
+#Questions associated with the Medium Difficulty Quiz
+mediumQuiz = '''The ___1___ manages the hardware of the computer system. It includes the CPU, memory,___2___ devices, and input/output " \
+    "devices. The type of ___3___ system software you use depends on your computers platform. The ___4___ is the brains of every microcomputer.'''
+
+#Questions associated with Hard Difficulty Quiz
+hardQuiz = '''The ___1___ are the fastest and most expensive computers. Supercomputers were introduced in the ___2___s. Traditionally, supercomputers have been " \
+    "used for ___3___ applications. They can also be used for ___4___ applications. Supercomputers must handle very large databases or do a great amount of computation (or both).'''
+
+#List of the answers associated with each difficulty of the quiz
+easyQuizAnswers = ['python', 'high', '1989', 'van']
+mediumQuizAnswers = ['operating system', 'storage', 'operating', 'CPU']
+hardQuizAnswers = ['supercomputer', '1960', 'scientific', 'engineering']
+
+player_answers = ['___1___', '___2___', '___3___', '___4___']
+                   
+                   
+# This function prompts the player to choose a difficulty for the game and returns their choice. If there selection is in valid it will provide error message and will let them try again.
 def getDifficulty():
-    # Prompts the Player to choose a difficulty for the game and returns their choice. If there selection is in valid it will provide error message and will let them try again.
     print "Please choose your difficulty: EASY | MEDIUM | HARD"
     choice = raw_input("").lower()
-    while choice not in ['easy', 'medium', 'hard']:
+    while choice not in ['easy', 'medium', 'hard', 'quit']:
         print "Choice {0} is not valid. Try again.".format(choice)
         print "Choose your difficulty: EASY | MEDIUM | HARD"
         choice = raw_input("").lower().strip()
     return choice
 
-def easyQuiz():
-    # Easy difficulty.
-    question = "This is a quiz developed by ___1___ programming language. Python is a widely used ___2___ -level, general-purpose, interpreted, " \
-        "dynamic programming language. Python was conceived in the late 1980s, and its implementation began in December ___3___. It was done by Guido ___4___ Rossum."
-    player_answers = ["", "", "", ""]
-    answers = ['python', 'high', '1989', 'van']
-    getAnswers(question, player_answers, answers)
-
-def mediumQuiz():
-    # Medium difficulty.
-    question = "The ___1___ manages the hardware of the computer system. It includes the CPU, memory,___2___ devices, and input/output " \
-        "devices. The type of ___3___ system software you use depends on your computers platform. The ___4___ is the brains of every microcomputer."
-    player_answers = ["", "", "", ""]
-    answers = ['operating system', 'storage', 'operating', 'CPU']
-    getAnswers(question, player_answers, answers)
-
-def hardQuiz():
-    # Hard difficulty.
-    question = "The ___1___ are the fastest and most expensive computers. Supercomputers were introduced in the ___2___s. Traditionally, supercomputers have been " \
-        "used for ___3___ applications. They can also be used for ___4___ applications. Supercomputers must handle very large ___5___ or do a great amount of computation (or both)."
-    player_answers = ["", "", "", ""]
-    answers = ['supercomputer', '1960', 'scientific', 'engineering', 'databases']
-    getAnswers(question, player_answers, answers)
-
+#This function prints the quiz, then prints each question one line at a time to for user to input, as well as checks the questions
 def getAnswers(question, player_answers, answers):
     blanks = ['___1___', '___2___', '___3___', '___4___']
     index = 0
@@ -66,12 +63,14 @@ def getAnswers(question, player_answers, answers):
         index += 1
     print "Thank you for playing!"
 
+#This function takes the difficulty selected and grabs the appropriate quiz, and answers for the game
 def fillInTheBlanks(difficulty):
     if difficulty == "easy":
-        easyQuiz()
+        getAnswers(easyQuiz, player_answers, easyQuizAnswers)
     elif difficulty == "medium":
-        mediumQuiz()
+        getAnswers(medium, player_answers, mediumQuizAnswers)
     elif difficulty == "hard":
-        hardQuiz()
+        getAnswers(hardQuiz, player_answers, hardQuizAnswers)
 
+#Starts the game
 fillInTheBlanks(getDifficulty())
